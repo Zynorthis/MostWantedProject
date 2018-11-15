@@ -2,6 +2,9 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
+var people = [];
+people = data;
+
 // app is the function called to start the entire application
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -61,7 +64,7 @@ function searchByName(people){
     }
   });
 
-  // TODO: What to do with filteredPeople?
+  // TODO: What to do with filteredPeople? (array.map)
 
 }
 
@@ -73,11 +76,19 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
-  var personInfo = "First Name: " + person.firstName + "\n";
+
+  var personInfo = prompt("DEV TEST: Enter in ID");
+
+  personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "Date of Birth: " + person.dateOfBirth + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "Current Spouse: " + person.cSpouse + "\n";
   alert(personInfo);
 }
 
