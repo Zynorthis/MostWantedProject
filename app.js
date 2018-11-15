@@ -2,7 +2,7 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
-// app is the function called to start the entire application
+// app is the function called to start the entire application link to search button 
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
@@ -19,7 +19,7 @@ function app(people){
   }
 }
 
-// Menu function to call once you find who you are looking for
+// Menu function to call once you find who you are looking for ,call app before if statement from html 
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -55,14 +55,16 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-  let filteredPeople = people.filter(function(el) {
+  let filteredPeople = people.filter(function(el) { 
+  alert(filteredPeople.map(function(people) {        
     if(el.firstName === firstName && el.lastName === lastName) {
       return el;
     }
-  });
+   }  
+  })
 
-  // TODO: What to do with filteredPeople?
-
+  // TODO: What to do with filteredPeople? (array.map)
+      
 }
 
 // alerts a list of people
