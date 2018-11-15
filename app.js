@@ -2,6 +2,10 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
+// Things to do:
+//    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
+//    - Keep people global and have person be the variable that have information being mapped to it
+
 var people = [];
 people = data;
 
@@ -77,9 +81,7 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(person){
-
-  var personInfo = prompt("DEV TEST: Enter in ID");
+function displayPerson(people){
 
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
