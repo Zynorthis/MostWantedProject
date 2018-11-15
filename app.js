@@ -6,10 +6,15 @@ Build all of your functions for displaying and gathering information below (GUI)
 //    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
 //    - Keep people global and have person be the variable that have information being mapped to it
 
+
+// app is the function called to start the entire application link to search button 
+
+
 var people = [];
 people = data;
 
 // app is the function called to start the entire application
+
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
@@ -18,7 +23,7 @@ function app(people){
       let nameSearch = searchByName();
       break;
     case 'no':
-      // TODO: search by traits
+      let traitSearch = searchByMul();
 
       break;
     default:
@@ -28,7 +33,7 @@ function app(people){
   }
 }
 
-// Menu function to call once you find who you are looking for
+// Menu function to call once you find who you are looking for ,call app before if statement from html 
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -64,15 +69,23 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-  let filteredPeople = people.filter(function(el) {
+  let filteredPeople = people.filter(function(el) { 
+  alert(filteredPeople.map(function(people) {        
     if(el.firstName === firstName && el.lastName === lastName) {
       return el;
     }
-  });
+
+   }  
+  }
+
+}
 
   // TODO: What to do with filteredPeople? (array.map)
 
-}
+
+  // TODO: What to do with filteredPeople? (array.map)
+      
+
 
 // alerts a list of people
 function displayPeople(people){
@@ -114,6 +127,13 @@ function chars(input){
   return true; // default validation only
 }
 
-function searchByTraits(people){
-  
+//Needs to be completed -Kanwar
+function searchByMul(people){
+    let personId = prompt("Enter ID");
+    let personDob = prompt("Enter Date of Birth");
+    let personEyeColor = prompt("Enter person's Eye Color");
+    let personOcc = prompt("Enter person's Occupation")
+
 }
+
+  
