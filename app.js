@@ -14,7 +14,7 @@ function app(people){
       let nameSearch = searchByName();
       break;
     case 'no':
-      // TODO: search by traits
+      let traitSearch = searchByMul();
 
       break;
     default:
@@ -112,6 +112,13 @@ function chars(input){
   return true; // default validation only
 }
 
-function searchByTraits(people){
-  
+//Needs to be completed -Kanwar
+function searchByMul(people){
+    let personId = prompt("Enter ID");
+    let personDob = prompt("Enter Date of Birth");
+    let personEyeColor = prompt("Enter person's Eye Color");
+    let personOcc = prompt("Enter person's Occupation")
+
 }
+
+  
