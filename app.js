@@ -2,15 +2,24 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
+<<<<<<< HEAD
 // app is the function called to start the entire application link to search button 
+=======
+var people = [];
+people = data;
+
+// app is the function called to start the entire application
+>>>>>>> b3f28c2e2daf9bf0fdc09ecb68c22b8c07fea376
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
       // TODO: search by name
+      let nameSearch = searchByName();
       break;
     case 'no':
       // TODO: search by traits
+
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -60,8 +69,14 @@ function searchByName(people){
     if(el.firstName === firstName && el.lastName === lastName) {
       return el;
     }
+<<<<<<< HEAD
    }  
   })
+=======
+  });
+
+  // TODO: What to do with filteredPeople? (array.map)
+>>>>>>> b3f28c2e2daf9bf0fdc09ecb68c22b8c07fea376
 
   // TODO: What to do with filteredPeople? (array.map)
       
@@ -69,17 +84,25 @@ function searchByName(people){
 
 // alerts a list of people
 function displayPeople(people){
-  alert(people.map(function(person){
+    alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
 
 function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
-  var personInfo = "First Name: " + person.firstName + "\n";
+
+  var personInfo = prompt("DEV TEST: Enter in ID");
+
+  personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "Date of Birth: " + person.dateOfBirth + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "Current Spouse: " + person.cSpouse + "\n";
   alert(personInfo);
 }
 
@@ -99,4 +122,8 @@ function yesNo(input){
 // helper function to pass in as default promptFor validation
 function chars(input){
   return true; // default validation only
+}
+
+function searchByTraits(people){
+  
 }
