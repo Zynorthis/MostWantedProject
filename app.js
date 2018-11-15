@@ -2,14 +2,14 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
-<<<<<<< HEAD
+
 // app is the function called to start the entire application link to search button 
-=======
+
 var people = [];
 people = data;
 
 // app is the function called to start the entire application
->>>>>>> b3f28c2e2daf9bf0fdc09ecb68c22b8c07fea376
+
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
@@ -69,18 +69,18 @@ function searchByName(people){
     if(el.firstName === firstName && el.lastName === lastName) {
       return el;
     }
-<<<<<<< HEAD
+
    }  
-  })
-=======
-  });
+  }
+
+}
 
   // TODO: What to do with filteredPeople? (array.map)
->>>>>>> b3f28c2e2daf9bf0fdc09ecb68c22b8c07fea376
+
 
   // TODO: What to do with filteredPeople? (array.map)
       
-}
+
 
 // alerts a list of people
 function displayPeople(people){
