@@ -8,9 +8,11 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
+      let nameSearch = searchByName();
       break;
     case 'no':
       // TODO: search by traits
+
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -67,7 +69,7 @@ function searchByName(people){
 
 // alerts a list of people
 function displayPeople(people){
-  alert(people.map(function(person){
+    alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
@@ -97,4 +99,8 @@ function yesNo(input){
 // helper function to pass in as default promptFor validation
 function chars(input){
   return true; // default validation only
+}
+
+function searchByTraits(people){
+  
 }
