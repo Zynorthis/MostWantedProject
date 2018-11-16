@@ -157,8 +157,8 @@ function age(input){
 
 //for validation of gender -M
 function gender(input, personGender){
-  let genderM=promptFor(male);
-  let genderF=promptFor(female);
+  let genderM=promptFor("Please Enter Gender");
+  let genderF=promptFor("Please Enter Gender");
   if (genderM.checked==false && genderF.checked==false)
       { 
         alert("You must select Male or Female");
@@ -167,7 +167,7 @@ function gender(input, personGender){
 }
 //for validation of height-M
 function height(input, personHeight){
-  let personHeight=promptFor(isNan(Height));
+  let personHeight=promptFor("Please Enter Person's Height.");
   if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
   alert("Please enter height, must be numerical!");
         return false;
@@ -175,7 +175,7 @@ function height(input, personHeight){
 }
 //validation of weight-M
 function weight(input, personWeight) {
-  let personWeight=promptFor(isNaN(Weight));
+  let personWeight=promptFor("Please Enter Person's Weight.");
   if(weight =="" || isNan(weight)){
     alert ("Please enter weight, must be numerical!");
       return false;
@@ -183,7 +183,7 @@ function weight(input, personWeight) {
 }
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor){
-  let personEyeColor=promptFor()
+  let personEyeColor=promptFor("Please Choose Person's Eye Color")
 
 }
 
