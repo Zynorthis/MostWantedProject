@@ -2,12 +2,18 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
+// app is the function called to start the entire application link to search button 
+
+
 // Things to do:
 //    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
 //    - Keep people global and have person be the variable that have information being mapped to it
 
 
 // app is the function called to start the entire application link to search button 
+
+var people = [];
+people = data;
 
 
 // app is the function called to start the entire application
@@ -17,7 +23,8 @@ function app(people){
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      let nameSearch = searchByName();
+      let nameSearch = searchByName(people);
+      displayPerson(nameSearch);
       break;
     case 'no':
       let traitSearch = searchByTraits();
@@ -62,9 +69,10 @@ function mainMenu(person, people){
   }
 }
 
-function searchByName(people){
+function searchByName(people){ 
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
+
 
     let filteredPeople = people.filter(function(el){ 
           if(el.firstName === firstName && el.lastName === lastName){
@@ -77,6 +85,18 @@ function searchByName(people){
 
   // TODO: What to do with filteredPeople? (array.map)
 
+
+
+  let filteredPeople = people.filter(function(el) {         
+    if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
+      return el;
+    }
+  });
+  return filteredPeople[0];
+  return filteredGender[0];
+  }
+
+      
 
 // alerts a list of people
 function displayPeople(people){
@@ -126,12 +146,49 @@ function isAgeValid(input){
   return true;
   }
 }
+
 //for Date of Birth Validation in Format xx/xx/xxxx
 function age(input){
   let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
   
 }
+
 // can be used in later stages 
+
+//for validation of gender -M
+function gender(input){
+  let genderM=promptFor(gender_male);
+  let genderF=promptFor(gender_female;
+  if (genderM.checked==false && genderF.checked==false)
+      { 
+        alert("You must select Male or Female");
+          return false;
+      }
+}
+//for validation of height-M
+function height(input){
+  let personHeight=promptFor(isNan(personHeight));
+  if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
+  alert("Please enter height, must be numerical!");
+        return false;
+  }
+}
+//validation of weight-M
+function weight(input) {
+  let personWeight=promptFor(isNaN(personWeight));
+  if(weight =="" || isNan(weight)){
+    alert ("Please enter weight, must be numerical!");
+      return false;
+  }
+}
+//validation of eyecolor-M
+function eyeColor(input){
+  let personEyeColor=promptFor()
+}
+
+
+//Needs to be completed -K
+
 function searchByMul(people){
     alert("Please Enter atleast 2 fields from the following")
     let personId = promptFor("Enter the ID", numericId);        
