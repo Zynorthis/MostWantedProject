@@ -68,11 +68,10 @@ function mainMenu(person, people){
   }
 }
 
-function searchByName(people){
+function searchByName(people){ 
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-<<<<<<< HEAD
   let filteredPeople = people.filter(function(el) {         
     if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
       return el;
@@ -81,28 +80,7 @@ function searchByName(people){
   return filteredPeople[0];
   }
 
-
-
-  // TODO: What to do with filteredPeople? (array.map)
-    
-=======
-    let filteredPeople = people.filter(function(el){ 
-      //  alert(filteredPeople.map(function(people){        
-          if(el.firstName === firstName && el.lastName === lastName){
-          return el;
-          }
-        });  
       
-
-}
-
-  // TODO: What to do with filteredPeople? (array.map)
-
-
-  // TODO: What to do with filteredPeople? (array.map)
-      
-
->>>>>>> 0e4c16d14802a38b477ebfa8596cadd94df64899
 
 // alerts a list of people
 function displayPeople(people){
