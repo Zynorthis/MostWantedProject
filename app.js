@@ -2,6 +2,9 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
+// Group discussion topic: Having the ages be added the "people" array at the start of the script
+// then referrenced later in the other functions when age is needed to be looked up.
+
 // app is the function called to start the entire application link to search button 
 
 function app(people){
@@ -26,8 +29,6 @@ function app(people){
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
-
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -86,10 +87,16 @@ function displayPerson(person, people){
     return el;
     }
   });
-  cSpouseFN = filteredSpouce[0].firstName;
-  cSpouseLN = filteredSpouce[0].lastName;
+  if (cSpouseFN == null || cSpouseLN == null) {
+    var cSpouseFN = "N/A";
+    var cSpouseLN = "";
+  }
+  else{
+    cSpouseFN = filteredSpouce[0].firstName;
+    cSpouseLN = filteredSpouce[0].lastName;
+    }
   if (person.parents.length == 0){
-    person.parents = "N/A";
+      person.parents = "N/A";
   }
 
   personInfo = "First Name: " + person.firstName + "\n";
@@ -139,9 +146,6 @@ function age(input){
   
 }
 
-
-
-
 //for validation of gender -M
 function gender(input, personGender){
   let genderM=promptFor("Please Enter Gender" );
@@ -185,7 +189,6 @@ function occupation(input,personOccupation){
 
 }
 
-
 //Needs to be completed -K
 // can be used in later stages 
 function searchByMul(people){
@@ -217,31 +220,28 @@ function searchByTraits(people){
   }
 
 }
-function searchByAge(){
+function searchByAge(people){
   let ageInput = promptFor("Please Enter the Age.", isAgeValid);
   dobToAge(ageInput, people);
 
 }
 
-function dobToAge(ageInput, people){
+function dobToAge(ageInput, people){ // To be continued...
   var ageInput;
   var semiFiltered = [];
-  var i = 0;
-  semiFiltered = people.map(function(person){
-      people[i][4].split("/");
-      i++;
-  });
-
   var todaysDate = new Date();
-  var todaysYear = todaysDate.getYear();
+  var todaysYear = todaysDate.getFullYear();
   var todaysMonth = todaysDate.getMonth() + 1;
   var todaysDay = todaysDate.getDay() + 1;
 
-  var fMonth = todaysMonth - semiFiltered[i][4];
-  var fday = todaysDay - semiFiltered[i][5];
-  var fYear = todaysYear - semiFiltered[i][6];
+  semiFiltered = people.map(function(person){
+      let dobArray = person.dob.split("/");
+      var fMonth = todaysMonth - dobArray[0];
+      var fday = todaysDay - dobArray[1];
+      var fYear = todaysYear - dobArray[2];
+      //person.age =
 
-  var s = fday/365;
-  var totalAge = Math.floor(fYear + s);
-  return totalAge;
+  });
+
+  // return totalAge;
 }
