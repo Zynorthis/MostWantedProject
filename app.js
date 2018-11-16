@@ -94,8 +94,12 @@ function searchByName(people){
     }
   });
   return filteredPeople[0];
+
   return filteredGender[0];
   
+  
+  }
+
 
       
 
@@ -154,6 +158,46 @@ function age(input){
   
 }
 
+
+
+
+//for validation of gender -M
+function gender(input, personGender){
+  let genderM=promptFor("Please Enter Gender" );
+  let genderF=promptFor("Please Enter Gender");
+  if (genderM.checked==false && genderF.checked==false)
+      { 
+        alert("You must select Male or Female");
+          return false;
+      }
+}
+//for validation of height-M
+function height(input, personHeight){
+  let personHeight=promptFor("Please Enter Person's Height.",height);
+  if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
+  alert("Please enter height, must be numerical!");
+        return false;
+  }
+}
+//validation of weight-M
+function weight(input, personWeight) {
+  let personWeight=promptFor("Please Enter Person's Weight.",weight);
+  if(weight =="" || isNan(weight)){
+    alert ("Please enter weight, must be numerical!");
+      return false;
+  }
+}
+//validation of eyecolor-M
+function eyeColor(input, personEyeColor,peopleEyeColor){
+  let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
+  let peopleEyeColor=eyeColor.push(["Brown", "Black","Hazel","Blue","Green"]);
+  for (i=0, personEyeColor; personEyeColor=peopleEyeColor[i++];){
+  if (personEyeColor =="" () ){
+    alert("Please Enter A Valid Color!");
+      return false;
+    }
+  }
+}
 
 //Needs to be completed -K
 // can be used in later stages 
