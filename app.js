@@ -2,8 +2,19 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
+<<<<<<< HEAD
 // app is the function called to start the entire application link to search button 
 
+=======
+// Things to do:
+//    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
+//    - Keep people global and have person be the variable that have information being mapped to it
+
+
+// app is the function called to start the entire application link to search button 
+
+
+>>>>>>> 0e4c16d14802a38b477ebfa8596cadd94df64899
 var people = [];
 people = data;
 
@@ -18,7 +29,7 @@ function app(people){
       displayPerson(nameSearch);
       break;
     case 'no':
-      // TODO: search by traits
+      let traitSearch = searchByMul();
 
       break;
     default:
@@ -64,6 +75,7 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
+<<<<<<< HEAD
   let filteredPeople = people.filter(function(el) {         
     if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
       return el;
@@ -76,6 +88,24 @@ function searchByName(people){
 
   // TODO: What to do with filteredPeople? (array.map)
     
+=======
+    let filteredPeople = people.filter(function(el){ 
+      //  alert(filteredPeople.map(function(people){        
+          if(el.firstName === firstName && el.lastName === lastName){
+          return el;
+          }
+        });  
+      
+
+}
+
+  // TODO: What to do with filteredPeople? (array.map)
+
+
+  // TODO: What to do with filteredPeople? (array.map)
+      
+
+>>>>>>> 0e4c16d14802a38b477ebfa8596cadd94df64899
 
 // alerts a list of people
 function displayPeople(people){
@@ -84,9 +114,7 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(person){
-
-  var personInfo = prompt("DEV TEST: Enter in ID");
+function displayPerson(people){
 
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
@@ -118,7 +146,32 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-
-function searchByTraits(people){
-  
+//for validation of ID -K
+function numericId(input){
+   if(isNaN(input)||input.length!=9){
+    alert("Please Enter a Valid 9 Digit ID");
+   }
+   else{
+  return true;
+  }
 }
+//for Date of Birth Validation in Format xx/xx/xxxx
+function dob(input){
+  let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+  if(input.match(dateFormat)){
+    return true;
+  }
+  else{
+    alert("Invalid Date Format");
+  }
+}
+//Needs to be completed -K
+function searchByMul(people){
+    let personId = promptFor("Enter the ID", numericId);
+    let personDob = promptFor("Enter Date of Birth(xx/xx/xxxx)", dob);
+    let personEyeColor = promptFor("Please Choose Person's Eye Color");
+    let personOcc = prompt("Enter person's Occupation");
+
+}
+
+  
