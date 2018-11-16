@@ -10,7 +10,7 @@ function app(people){
     case 'yes':
       // TODO: search by name
       let nameSearch = searchByName(people);
-      displayPerson(nameSearch);
+      displayPerson(nameSearch, people);
       break;
     case 'no':
       let traitSearch = searchByTraits();
@@ -78,19 +78,31 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(person){
+function displayPerson(person, people){
+
+  var id = person.currentSpouse;
+  var filteredSpouce = people.filter(function(el){
+    if(el.id === id){
+    return el;
+    }
+  });
+  cSpouseFN = filteredSpouce[0].firstName;
+  cSpouseLN = filteredSpouce[0].lastName;
+  if (person.parents.length == 0){
+    person.parents = "N/A";
+  }
 
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
-  personInfo += "Date of Birth: " + person.dateOfBirth + "\n";
+  personInfo += "Date of Birth: " + person.dob + "\n";
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
-  personInfo += "Current Spouse: " + person.cSpouse + "\n";
-  console.log(personInfo);
+  personInfo += "Current Spouse: " + cSpouseFN + " " + cSpouseLN + "\n";
+  console.log("ID: " + person.id + "\n" + personInfo);
   alert(personInfo);
 }
 
@@ -215,10 +227,10 @@ function dobToAge(ageInput, people){
   var ageInput;
   var semiFiltered = [];
   var i = 0;
-  semiFiltered = people.map(function(person)){
+  semiFiltered = people.map(function(person){
       people[i][4].split("/");
       i++;
-  }
+  });
 
   var todaysDate = new Date();
   var todaysYear = todaysDate.getYear();
