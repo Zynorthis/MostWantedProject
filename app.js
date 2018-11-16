@@ -27,6 +27,7 @@ function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
+
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -64,7 +65,10 @@ function searchByName(people){
     }
   });
   return filteredPeople[0];
+
   return filteredGender[0];
+  
+  
   }
 
 // alerts a list of people
@@ -109,7 +113,7 @@ function chars(input){
 }
 //for validation of Age 
 function isAgeValid(input){
-   if(isNaN(input)&&(input.length==1||input.length==2||input.length==3)){
+   if(isNaN(input)||input.length>3||input>120){
     alert("Please Enter a Valid Age");
    }
    else{
@@ -123,12 +127,13 @@ function age(input){
   
 }
 
-// can be used in later stages 
+
+
 
 //for validation of gender -M
-function gender(input){
-  let genderM=promptFor(gender_male);
-  let genderF=promptFor(gender_female;
+function gender(input, personGender){
+  let genderM=promptFor("Please Enter Gender" );
+  let genderF=promptFor("Please Enter Gender");
   if (genderM.checked==false && genderF.checked==false)
       { 
         alert("You must select Male or Female");
@@ -136,29 +141,41 @@ function gender(input){
       }
 }
 //for validation of height-M
-function height(input){
-  let personHeight=promptFor(isNan(personHeight));
+function height(input, personHeight){
+  let personHeight=promptFor("Please Enter Person's Height.",height);
   if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
   alert("Please enter height, must be numerical!");
         return false;
   }
 }
 //validation of weight-M
-function weight(input) {
-  let personWeight=promptFor(isNaN(personWeight));
+function weight(input, personWeight) {
+  let personWeight=promptFor("Please Enter Person's Weight.",weight);
   if(weight =="" || isNan(weight)){
     alert ("Please enter weight, must be numerical!");
       return false;
   }
 }
 //validation of eyecolor-M
-function eyeColor(input){
-  let personEyeColor=promptFor()
+function eyeColor(input, personEyeColor,peopleEyeColor){
+  let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
+  let colors= eyeColor["Black","Brown","Green","Blue","Hazel"];
+
+  if (personEyeColor =="" () ){
+    alert("Please Enter A Valid Color!");
+      return false;
+  }
+}
+//validation of Occupation
+function occupation(input,personOccupation){
+
+
+
 }
 
 
 //Needs to be completed -K
-
+// can be used in later stages 
 function searchByMul(people){
     alert("Please Enter atleast 2 fields from the following")
     let personId = promptFor("Enter the ID", numericId);        
@@ -189,7 +206,7 @@ function searchByTraits(people){
 
 }
 function searchByAge(){
-  let ageInput = promptFor("Please Enter the Age.", isAgeValid);  
+  let ageInput = promptFor("Please Enter the Age.", isAgeValid);
   dobToAge(ageInput, people);
 
 }
