@@ -2,25 +2,18 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
-// Things to do:
-//    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
-//    - Keep people global and have person be the variable that have information being mapped to it
-
-
 // app is the function called to start the entire application link to search button 
-
-// app is the function called to start the entire application
 
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      let nameSearch = searchByName();
+      let nameSearch = searchByName(people);
+      displayPerson(nameSearch);
       break;
     case 'no':
-      let traitSearch = searchByMul(people);
-
+      let traitSearch = searchByTraits();
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -61,20 +54,18 @@ function mainMenu(person, people){
   }
 }
 
-function searchByName(people){
+function searchByName(people){ 
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-    let filteredPeople = people.filter(function(el){       
-      if(el.firstName === firstName && el.lastName === lastName){
-        return el;
-      }
-    });
-}
-
-  // TODO: What to do with filteredPeople? (array.map)
-      
-
+  let filteredPeople = people.filter(function(el) {         
+    if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
+      return el;
+    }
+  });
+  return filteredPeople[0];
+  return filteredGender[0];
+  }
 
 // alerts a list of people
 function displayPeople(people){
@@ -83,7 +74,7 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(people){
+function displayPerson(person){
 
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
@@ -116,30 +107,112 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-//for validation of ID -K
-function numericId(input){
-   if(isNaN(input)||input.length!=9){
-    alert("Please Enter a Valid 9 Digit ID");
+//for validation of Age 
+function isAgeValid(input){
+   if(isNaN(input)&&(input.length==1||input.length==2||input.length==3)){
+    alert("Please Enter a Valid Age");
    }
    else{
   return true;
   }
 }
+
 //for Date of Birth Validation in Format xx/xx/xxxx
-function dob(input){
+function age(input){
   let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-  if(input.match(dateFormat)){
-    return true;
-  }
-  else{
-    alert("Invalid Date Format");
+  
+}
+
+// can be used in later stages 
+
+//for validation of gender -M
+function gender(input){
+  let genderM=promptFor(gender_male);
+  let genderF=promptFor(gender_female;
+  if (genderM.checked==false && genderF.checked==false)
+      { 
+        alert("You must select Male or Female");
+          return false;
+      }
+}
+//for validation of height-M
+function height(input){
+  let personHeight=promptFor(isNan(personHeight));
+  if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
+  alert("Please enter height, must be numerical!");
+        return false;
   }
 }
+//validation of weight-M
+function weight(input) {
+  let personWeight=promptFor(isNaN(personWeight));
+  if(weight =="" || isNan(weight)){
+    alert ("Please enter weight, must be numerical!");
+      return false;
+  }
+}
+//validation of eyecolor-M
+function eyeColor(input){
+  let personEyeColor=promptFor()
+}
+
+
 //Needs to be completed -K
+
 function searchByMul(people){
-    let personId = promptFor("Enter the ID", numericId);
-    let personDob = promptFor("Enter Date of Birth(xx/xx/xxxx)", dob);
+    alert("Please Enter atleast 2 fields from the following")
+    let personId = promptFor("Enter the ID", numericId);        
+    let personAge = promptFor("Enter the Person's Age", age);
+    let personSpouse = prompt("Enter Spouse's Full Name: ", firstName, lastName)
     let personEyeColor = promptFor("Please Choose Person's Eye Color");
     let personOcc = prompt("Enter person's Occupation");
 
+}
+
+// search by individual trait
+function searchByTraits(people){
+  let traitsOption = prompt("How Do you want to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Eye Color, Press '4' for Height, Press '5' for  Spouse Name");
+  switch (traitsOption){
+    case "1":
+      searchByAge();
+      //filter person by Age
+    case "2" :
+      //filter person by Gender
+    case "3" :
+      // filter person by Occupation
+    case "4" :
+      // filter person by Height
+    case "5":
+      // filter person by spouse name
+    
+  }
+
+}
+function searchByAge(){
+  let ageInput = promptFor("Please Enter the Age.", isAgeValid);  
+  dobToAge(ageInput, people);
+
+}
+
+function dobToAge(ageInput, people){
+  var ageInput;
+  var semiFiltered = [];
+  var i = 0;
+  semiFiltered = people.map(function(person)){
+      people[i][4].split("/");
+      i++;
+  }
+
+  var todaysDate = new Date();
+  var todaysYear = todaysDate.getYear();
+  var todaysMonth = todaysDate.getMonth() + 1;
+  var todaysDay = todaysDate.getDay() + 1;
+
+  var fMonth = todaysMonth - semiFiltered[i][4];
+  var fday = todaysDay - semiFiltered[i][5];
+  var fYear = todaysYear - semiFiltered[i][6];
+
+  var s = fday/365;
+  var totalAge = Math.floor(fYear + s);
+  return totalAge;
 }
