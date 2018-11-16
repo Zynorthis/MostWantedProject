@@ -69,14 +69,13 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-  let filteredPeople = people.filter(function(el) { 
-  alert(filteredPeople.map(function(people) {        
-    if(el.firstName === firstName && el.lastName === lastName) {
-      return el;
-    }
-
-   }  
-  }
+    let filteredPeople = people.filter(function(el){ 
+      //  alert(filteredPeople.map(function(people){        
+          if(el.firstName === firstName && el.lastName === lastName){
+          return el;
+          }
+        });  
+      
 
 }
 
@@ -126,13 +125,31 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-
-//Needs to be completed -Kanwar
+//for validation of ID -K
+function numericId(input){
+   if(isNaN(input)||input.length!=9){
+    alert("Please Enter a Valid 9 Digit ID");
+   }
+   else{
+  return true;
+  }
+}
+//for Date of Birth Validation in Format xx/xx/xxxx
+function dob(input){
+  let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+  if(input.match(dateFormat)){
+    return true;
+  }
+  else{
+    alert("Invalid Date Format");
+  }
+}
+//Needs to be completed -K
 function searchByMul(people){
-    let personId = prompt("Enter ID");
-    let personDob = prompt("Enter Date of Birth");
-    let personEyeColor = prompt("Enter person's Eye Color");
-    let personOcc = prompt("Enter person's Occupation")
+    let personId = promptFor("Enter the ID", numericId);
+    let personDob = promptFor("Enter Date of Birth(xx/xx/xxxx)", dob);
+    let personEyeColor = promptFor("Please Choose Person's Eye Color");
+    let personOcc = prompt("Enter person's Occupation");
 
 }
 
