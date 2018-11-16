@@ -2,20 +2,20 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
-<<<<<<< HEAD
 // app is the function called to start the entire application link to search button 
-=======
+
 var people = [];
 people = data;
 
 // app is the function called to start the entire application
->>>>>>> b3f28c2e2daf9bf0fdc09ecb68c22b8c07fea376
+
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
       // TODO: search by name
-      let nameSearch = searchByName();
+      let nameSearch = searchByName(people);
+      displayPerson(nameSearch);
       break;
     case 'no':
       // TODO: search by traits
@@ -64,23 +64,18 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-  let filteredPeople = people.filter(function(el) { 
-  alert(filteredPeople.map(function(people) {        
-    if(el.firstName === firstName && el.lastName === lastName) {
+  let filteredPeople = people.filter(function(el) {         
+    if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
       return el;
     }
-<<<<<<< HEAD
-   }  
-  })
-=======
   });
+  return filteredPeople[0];
+  }
+
+
 
   // TODO: What to do with filteredPeople? (array.map)
->>>>>>> b3f28c2e2daf9bf0fdc09ecb68c22b8c07fea376
-
-  // TODO: What to do with filteredPeople? (array.map)
-      
-}
+    
 
 // alerts a list of people
 function displayPeople(people){
