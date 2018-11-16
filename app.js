@@ -10,9 +10,6 @@ Build all of your functions for displaying and gathering information below (GUI)
 // app is the function called to start the entire application link to search button 
 
 
-var people = [];
-people = data;
-
 // app is the function called to start the entire application
 
 function app(people){
@@ -23,7 +20,7 @@ function app(people){
       let nameSearch = searchByName();
       break;
     case 'no':
-      let traitSearch = searchByMul();
+      let traitSearch = searchByTraits();
 
       break;
     default:
@@ -70,7 +67,6 @@ function searchByName(people){
   var lastName = promptFor("What is the person's last name?", chars);
 
     let filteredPeople = people.filter(function(el){ 
-      //  alert(filteredPeople.map(function(people){        
           if(el.firstName === firstName && el.lastName === lastName){
           return el;
           }
@@ -80,10 +76,6 @@ function searchByName(people){
 }
 
   // TODO: What to do with filteredPeople? (array.map)
-
-
-  // TODO: What to do with filteredPeople? (array.map)
-      
 
 
 // alerts a list of people
@@ -125,32 +117,51 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
-//for validation of ID -K
-function numericId(input){
-   if(isNaN(input)||input.length!=9){
-    alert("Please Enter a Valid 9 Digit ID");
+//for validation of Age 
+function isAgeValid(input){
+   if(isNaN(input)&&(input.length==1||input.length==2||input.length==3)){
+    alert("Please Enter a Valid Age");
    }
    else{
   return true;
   }
 }
 //for Date of Birth Validation in Format xx/xx/xxxx
-function dob(input){
+function age(input){
   let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-  if(input.match(dateFormat)){
-    return true;
-  }
-  else{
-    alert("Invalid Date Format");
-  }
+  
 }
-//Needs to be completed -K
+// can be used in later stages 
 function searchByMul(people){
-    let personId = promptFor("Enter the ID", numericId);
-    let personDob = promptFor("Enter Date of Birth(xx/xx/xxxx)", dob);
+    alert("Please Enter atleast 2 fields from the following")
+    let personId = promptFor("Enter the ID", numericId);        
+    let personAge = promptFor("Enter the Person's Age", age);
+    let personSpouse = prompt("Enter Spouse's Full Name: ", firstName, lastName)
     let personEyeColor = promptFor("Please Choose Person's Eye Color");
     let personOcc = prompt("Enter person's Occupation");
 
 }
 
-  
+// search by individual trait
+function searchByTraits(people){
+  let traitsOption = prompt("How Do you want to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Eye Color, Press '4' for Height, Press '5' for  Spouse Name");
+  switch (traitsOption){
+    case "1":
+      searchByAge();
+      //filter person by Age
+    case "2" :
+      //filter person by Gender
+    case "3" :
+      // filter person by Occupation
+    case "4" :
+      // filter person by Height
+    case "5":
+      // filter person by spouse name
+    
+  }
+
+}
+function searchByAge(){
+  let ageInput = promptFor("Please Enter the Age.", isAgeValid);
+
+}
