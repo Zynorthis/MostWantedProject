@@ -2,10 +2,9 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
-<<<<<<< HEAD
 // app is the function called to start the entire application link to search button 
 
-=======
+
 // Things to do:
 //    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
 //    - Keep people global and have person be the variable that have information being mapped to it
@@ -13,8 +12,6 @@ Build all of your functions for displaying and gathering information below (GUI)
 
 // app is the function called to start the entire application link to search button 
 
-
->>>>>>> 0e4c16d14802a38b477ebfa8596cadd94df64899
 var people = [];
 people = data;
 
