@@ -78,6 +78,7 @@ function searchByName(people){
     }
   });
   return filteredPeople[0];
+  return filteredGender[0];
   }
 
       
@@ -130,6 +131,7 @@ function numericId(input){
   return true;
   }
 }
+
 //for Date of Birth Validation in Format xx/xx/xxxx
 function dob(input){
   let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
@@ -140,6 +142,38 @@ function dob(input){
     alert("Invalid Date Format");
   }
 }
+//for validation of gender -M
+function gender(input){
+  let genderM=promptFor(gender_male);
+  let genderF=promptFor(gender_female;
+  if (genderM.checked==false && genderF.checked==false)
+      { 
+        alert("You must select Male or Female");
+          return false;
+      }
+}
+//for validation of height-M
+function height(input){
+  let personHeight=promptFor(isNan(personHeight));
+  if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
+  alert("Please enter height, must be numerical!");
+        return false;
+  }
+}
+//validation of weight-M
+function weight(input) {
+  let personWeight=promptFor(isNaN(personWeight));
+  if(weight =="" || isNan(weight)){
+    alert ("Please enter weight, must be numerical!");
+      return false;
+  }
+}
+//validation of eyecolor-M
+function eyeColor(input){
+  let personEyeColor=promptFor()
+}
+
+
 //Needs to be completed -K
 function searchByMul(people){
     let personId = promptFor("Enter the ID", numericId);
