@@ -190,14 +190,21 @@ function weight(input, personWeight) {
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor,peopleEyeColor){
   let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
-  let peopleEyeColor=eyeColor.push(["Brown", "Black","Hazel","Blue","Green"]);
-  for (i=0, personEyeColor; personEyeColor=peopleEyeColor[i++];){
+  let colors= eyeColor["Black","Brown","Green","Blue","Hazel"];
+
   if (personEyeColor =="" () ){
     alert("Please Enter A Valid Color!");
       return false;
     }
   }
 }
+//validation of Occupation
+function occupation(input,personOccupation){
+
+
+
+}
+
 
 //Needs to be completed -K
 // can be used in later stages 
