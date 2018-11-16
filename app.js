@@ -78,7 +78,7 @@ function searchByName(people){
     }
   });
   return filteredPeople[0];
-  return filteredGender[0];
+  
   }
 
       
@@ -143,9 +143,9 @@ function dob(input){
   }
 }
 //for validation of gender -M
-function gender(input){
-  let genderM=promptFor(gender_male);
-  let genderF=promptFor(gender_female;
+function gender(input, personGender){
+  let genderM=promptFor(male);
+  let genderF=promptFor(female);
   if (genderM.checked==false && genderF.checked==false)
       { 
         alert("You must select Male or Female");
@@ -153,24 +153,25 @@ function gender(input){
       }
 }
 //for validation of height-M
-function height(input){
-  let personHeight=promptFor(isNan(personHeight));
+function height(input, personHeight){
+  let personHeight=promptFor(isNan(Height));
   if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
   alert("Please enter height, must be numerical!");
         return false;
   }
 }
 //validation of weight-M
-function weight(input) {
-  let personWeight=promptFor(isNaN(personWeight));
+function weight(input, personWeight) {
+  let personWeight=promptFor(isNaN(Weight));
   if(weight =="" || isNan(weight)){
     alert ("Please enter weight, must be numerical!");
       return false;
   }
 }
 //validation of eyecolor-M
-function eyeColor(input){
+function eyeColor(input, personEyeColor){
   let personEyeColor=promptFor()
+
 }
 
 
