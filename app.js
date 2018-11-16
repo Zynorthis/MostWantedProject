@@ -9,10 +9,6 @@ Build all of your functions for displaying and gathering information below (GUI)
 
 // app is the function called to start the entire application link to search button 
 
-
-var people = [];
-people = data;
-
 // app is the function called to start the entire application
 
 function app(people){
@@ -23,7 +19,7 @@ function app(people){
       let nameSearch = searchByName();
       break;
     case 'no':
-      let traitSearch = searchByMul();
+      let traitSearch = searchByMul(people);
 
       break;
     default:
@@ -69,18 +65,12 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-    let filteredPeople = people.filter(function(el){ 
-      //  alert(filteredPeople.map(function(people){        
-          if(el.firstName === firstName && el.lastName === lastName){
-          return el;
-          }
-        });  
-      
-
+    let filteredPeople = people.filter(function(el){       
+      if(el.firstName === firstName && el.lastName === lastName){
+        return el;
+      }
+    });
 }
-
-  // TODO: What to do with filteredPeople? (array.map)
-
 
   // TODO: What to do with filteredPeople? (array.map)
       
@@ -105,6 +95,7 @@ function displayPerson(people){
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "Current Spouse: " + person.cSpouse + "\n";
+  console.log(personInfo);
   alert(personInfo);
 }
 
@@ -152,5 +143,3 @@ function searchByMul(people){
     let personOcc = prompt("Enter person's Occupation");
 
 }
-
-  

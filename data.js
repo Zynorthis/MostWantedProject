@@ -1,4 +1,4 @@
-// You may modify this for testing purposes.
+// You may modify this for testing purposes. 22 total People
 let data = [
 	{
 		"id": 272822514,
@@ -6,8 +6,8 @@ let data = [
 		"lastName": "Bob",
 		"gender": "male",
 		"dob": "1/18/1949",
-		"height": 71,
-		"weight": 175,
+		"height": 71,  // height = inches - in.
+		"weight": 175, // weight = pounds - lb.
 		"eyeColor": "brown",
 		"occupation": "programmer",
 		"parents": [],
