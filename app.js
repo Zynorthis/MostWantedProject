@@ -209,8 +209,10 @@ function occupation(input,personOccupation){
     if(el.occupation == personOccupation)
     {
       return el;
+    }
   //"Nurse","Doctor","Assistant","Landscaper","Politician","Programmer","Student","Architect");
-  }
+});
+}
   while (personOccupation.toLowerCase == null){
     var personOccupation="";
     callback("Error! Enter Valid Occupation!");
