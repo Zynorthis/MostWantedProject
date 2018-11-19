@@ -152,10 +152,12 @@ function gender(input, personGender){
   let genderF=promptFor("Please Enter Gender");
   if (genderM.checked==false && genderF.checked==false)
       { 
-        alert("You must select Male or Female");
+        alert("Error! You must select Male or Female");
           return false;
       }
 }
+
+
 //for validation of height-M
 function height(input, personHeight){
   let personHeight=promptFor("Please Enter Person's Height.",height);
@@ -164,51 +166,67 @@ function height(input, personHeight){
         return false;
   }
 }
+
 //validation of weight-M
 function weight(input, personWeight) {
   let personWeight=promptFor("Please Enter Person's Weight.",weight);
   if(weight =="" || isNan(weight)){
-    alert ("Please enter weight, must be numerical!");
+    alert ("Error! Please enter weight, must be numerical!");
       return false;
   }
 }
+
+
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor,peopleEyeColor){
   let peopleEyeColor;
   let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
   let colors= peopleEyeColor.map(function("Black","Brown","Green","Blue","Hazel");{
 
-  if (personEyeColor =="" () ){
-    alert("Enter A Valid Color!");
+  if (personEyeColor == null ){
+    let personEyeColor ="";
+    alert("Error! Enter A Valid Color!");
       return false;
+    }
   }
 }
 
 
 
-//validation of Occupation nurse,doctor,assistant etc
+//validation of Occupation nurse,doctor,assistant,landscaper,politician,programmer,student,architect, etc
 function occupation(input,personOccupation){
   let personOccupation;
   let personOccupation=promptFor("Please Enter Person's Occupation")
+  let occupation= personsOccupation.forEach(function("Nurse","Doctor","Assistant","Landscaper","Politician","Programmer","Student","Architect");{
 
-
-
+  if (personOccupation == null){
+    let personOccupation="";
+    alert ("Error! Enter Valid Occupation!");
+      return false;
+    }
+  }
 }
 
 //validation of Spouse
-function spouse(input,personSpouse){
-
-
+function spouse(input,personCSpouse,people){
+  let personCSpouse=promptFor("Please Enter Your Spouses Name.");
+  let id=personCSpouse(function(el){
+    
+    if (personCSpouse == null){
+    let personOccupation="";
+      alert ("Error! Enter vaild ID or Name!");
+      return false;  
+    }
+  }
 }
+
+
 //Needs to be completed -K
 // can be used in later stages 
 function searchByMul(people){
     alert("Please Enter atleast 2 fields from the following")
     let personId = promptFor("Enter the ID", numericId);        
     let personAge = promptFor("Enter the Person's Age", age);
-    let personSpouse = prompt("Enter Spouse's Full Name: ", firstName, lastName)
-    let personEyeColor = promptFor("Please Choose Person's Eye Color");
-    let personOcc = prompt("Enter person's Occupation");
 
 }
 
