@@ -149,8 +149,8 @@ function gender(people){
   var genderM=promptFor("Please Enter Gender"),male;
   var genderF=promptFor("Please Enter Gender"),female;
   }
-  while (genderM.toLowerCase==false ||callback(genderF.toLowerCase==false)){   
-        callback("Error! You must select Male or Female");
+  while (genderM.toLowerCase==false ||(genderF.toLowerCase==false)){   
+        alerts("Error! You must select Male or Female");
           return false;
         }
       }
