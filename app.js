@@ -82,7 +82,7 @@ function displayPeople(people){
 function displayPerson(person, people){
 
   var id = person.currentSpouse;
-  var filteredSpouce = people.filter(function(el){
+  var filteredSpouse = people.filter(function(el){
     if(el.id === id){
     return el;
     }
@@ -92,8 +92,8 @@ function displayPerson(person, people){
     var cSpouseLN = "";
   }
   else{
-    cSpouseFN = filteredSpouce[0].firstName;
-    cSpouseLN = filteredSpouce[0].lastName;
+    cSpouseFN = filteredSpouse[0].firstName;
+    cSpouseLN = filteredSpouse[0].lastName;
     }
   if (person.parents.length == 0){
       person.parents = "N/A";
@@ -148,73 +148,75 @@ function age(input){
 
 //for validation of gender -M
 function gender(input, personGender){
-  let genderM=promptFor("Please Enter Gender" );
-  let genderF=promptFor("Please Enter Gender");
-  if (genderM.checked==false && genderF.checked==false)
-      { 
-        alert("Error! You must select Male or Female");
+  do{
+  var genderM=promptFor("Please Enter Gender").trim();
+  var genderF=promptFor("Please Enter Gender");
+  while (genderM.checked==false ||callback(genderF.checked==false)){   
+        callback("Error! You must select Male or Female");
           return false;
+        }
       }
 }
 
-
 //for validation of height-M
 function height(input, personHeight){
-  let personHeight=promptFor("Please Enter Person's Height.",height);
-  if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
-  alert("Please enter height, must be numerical!");
+  do{
+  var personHeight=promptFor("Please Enter Person's Height.",height).trim();
+  while(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in));
+  callback("Error! Please enter height, must be numerical!");
         return false;
-  }
+      }
 }
 
 //validation of weight-M
 function weight(input, personWeight) {
-  let personWeight=promptFor("Please Enter Person's Weight.",weight);
-  if(weight =="" || isNan(weight)){
-    alert ("Error! Please enter weight, must be numerical!");
+  do{
+  var personWeight=promptFor("Please Enter Person's Weight.",weight).trim();
+  while(weight =="" || isNan(weight)){
+    callback ("Error! Please enter weight, must be numerical!");
       return false;
   }
 }
-
 
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor,peopleEyeColor){
-  let peopleEyeColor;
-  let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
-  let colors= peopleEyeColor.map(function("Black","Brown","Green","Blue","Hazel");{
+  do{
+  var peopleEyeColor;
+  var personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor).trim();
+  var colors= peopleEyeColor.map(function("Black","Brown","Green","Blue","Hazel").trim();
 
-  if (personEyeColor == null ){
-    let personEyeColor ="";
-    alert("Error! Enter A Valid Color!");
+  while(personEyeColor == null ){
+    var personEyeColor ="";
+    callback("Error! Enter A Valid Color!");
       return false;
     }
   }
 }
 
-
-
-//validation of Occupation nurse,doctor,assistant,landscaper,politician,programmer,student,architect, etc
+//validation of Occupation -M
 function occupation(input,personOccupation){
-  let personOccupation;
-  let personOccupation=promptFor("Please Enter Person's Occupation")
-  let occupation= personsOccupation.forEach(function("Nurse","Doctor","Assistant","Landscaper","Politician","Programmer","Student","Architect");{
+  do{
+  var personOccupation;
+  var personOccupation=promptFor("Please Enter Person's Occupation").trim();
+  var occupation= personsOccupation.forEach(function("Nurse","Doctor","Assistant","Landscaper","Politician","Programmer","Student","Architect");
 
-  if (personOccupation == null){
-    let personOccupation="";
-    alert ("Error! Enter Valid Occupation!");
+  while (personOccupation == null){
+    var personOccupation="";
+    callback("Error! Enter Valid Occupation!");
       return false;
     }
   }
 }
 
-//validation of Spouse
+//validation of Spouse-M
 function spouse(input,personCSpouse,people){
-  let personCSpouse=promptFor("Please Enter Your Spouses Name.");
-  let id=personCSpouse(function(el){
+  do{
+  var personCSpouse=promptFor("Please Enter Your Spouses Name.").trim();
+  var id=personCSpouse(function(el){
     
-    if (personCSpouse == null){
-    let personOccupation="";
-      alert ("Error! Enter vaild ID or Name!");
+    while (personCSpouse == null){
+    var personOccupation="";
+      callback ("Error! Enter vaild ID or Name!");
       return false;  
     }
   }
