@@ -2,21 +2,10 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 
-// app is the function called to start the entire application link to search button 
-
-
-// Things to do:
-//    - Create a new function that handles most of, if not all of, the sorting/filtering/mapping of the people data set
-//    - Keep people global and have person be the variable that have information being mapped to it
-
+// Group discussion topic: Having the ages be added the "people" array at the start of the script
+// then referrenced later in the other functions when age is needed to be looked up.
 
 // app is the function called to start the entire application link to search button 
-
-var people = [];
-people = data;
-
-
-// app is the function called to start the entire application
 
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -24,11 +13,10 @@ function app(people){
     case 'yes':
       // TODO: search by name
       let nameSearch = searchByName(people);
-      displayPerson(nameSearch);
+      displayPerson(nameSearch, people);
       break;
     case 'no':
       let traitSearch = searchByTraits();
-
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -41,7 +29,6 @@ function app(people){
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -73,30 +60,17 @@ function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
 
-
-    let filteredPeople = people.filter(function(el){ 
-          if(el.firstName === firstName && el.lastName === lastName){
-          return el;
-          }
-        });  
-      
-
-}
-
-  // TODO: What to do with filteredPeople? (array.map)
-
-
-
   let filteredPeople = people.filter(function(el) {         
     if(el.firstName.toLowerCase() === firstName.toLowerCase() && el.lastName.toLowerCase() === lastName.toLowerCase()) {
       return el;
     }
   });
   return filteredPeople[0];
+
+  return filteredGender[0];
+  
   
   }
-
-      
 
 // alerts a list of people
 function displayPeople(people){
@@ -105,18 +79,37 @@ function displayPeople(people){
   }).join("\n"));
 }
 
-function displayPerson(people){
+function displayPerson(person, people){
+
+  var id = person.currentSpouse;
+  var filteredSpouce = people.filter(function(el){
+    if(el.id === id){
+    return el;
+    }
+  });
+  if (cSpouseFN == null || cSpouseLN == null) {
+    var cSpouseFN = "N/A";
+    var cSpouseLN = "";
+  }
+  else{
+    cSpouseFN = filteredSpouce[0].firstName;
+    cSpouseLN = filteredSpouce[0].lastName;
+    }
+  if (person.parents.length == 0){
+      person.parents = "N/A";
+  }
 
   personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
-  personInfo += "Date of Birth: " + person.dateOfBirth + "\n";
+  personInfo += "Date of Birth: " + person.dob + "\n";
   personInfo += "Height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
-  personInfo += "Current Spouse: " + person.cSpouse + "\n";
+  personInfo += "Current Spouse: " + cSpouseFN + " " + cSpouseLN + "\n";
+  console.log("ID: " + person.id + "\n" + personInfo);
   alert(personInfo);
 }
 
@@ -139,7 +132,7 @@ function chars(input){
 }
 //for validation of Age 
 function isAgeValid(input){
-   if(isNaN(input)&&(input.length==1||input.length==2||input.length==3)){
+   if(isNaN(input)||input.length>3||input>120){
     alert("Please Enter a Valid Age");
    }
    else{
@@ -152,8 +145,6 @@ function age(input){
   let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
   
 }
-
-// can be used in later stages 
 
 //for validation of gender -M
 function gender(input, personGender){
@@ -190,7 +181,6 @@ function eyeColor(input, personEyeColor,peopleEyeColor){
   if (personEyeColor =="" () ){
     alert("Enter A Valid Color!");
       return false;
-    }
   }
 }
 
@@ -211,7 +201,7 @@ function spouse(input,personSpouse){
 
 }
 //Needs to be completed -K
-
+// can be used in later stages 
 function searchByMul(people){
     alert("Please Enter atleast 2 fields from the following")
     let personId = promptFor("Enter the ID", numericId);        
@@ -241,7 +231,28 @@ function searchByTraits(people){
   }
 
 }
-function searchByAge(){
+function searchByAge(people){
   let ageInput = promptFor("Please Enter the Age.", isAgeValid);
+  dobToAge(ageInput, people);
 
+}
+
+function dobToAge(ageInput, people){ // To be continued...
+  var ageInput;
+  var semiFiltered = [];
+  var todaysDate = new Date();
+  var todaysYear = todaysDate.getFullYear();
+  var todaysMonth = todaysDate.getMonth() + 1;
+  var todaysDay = todaysDate.getDay() + 1;
+
+  semiFiltered = people.map(function(person){
+      let dobArray = person.dob.split("/");
+      var fMonth = todaysMonth - dobArray[0];
+      var fday = todaysDay - dobArray[1];
+      var fYear = todaysYear - dobArray[2];
+      //person.age =
+
+  });
+
+  // return totalAge;
 }
