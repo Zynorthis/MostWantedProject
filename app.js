@@ -16,7 +16,14 @@ function app(people){
       displayPerson(nameSearch, people);
       break;
     case 'no':
-      let traitSearch = searchByTraits();
+//while loop
+      let isSearching = true;
+      while(isSearching){
+        people = searchByTraits(people);
+        isSearching = isDoneSearching();
+      }
+      
+//traitSearchComplete
       break;
     default:
       alert("Invalid input. Please try again!");
@@ -136,50 +143,44 @@ function isAgeValid(input){
   }
 }
 
-//for Date of Birth Validation in Format xx/xx/xxxx
+//Date of Birth Validation in Format xx/xx/xxxx
 function age(input){
   let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
   
 }
 
-//for validation of gender -M
-function gender(people){
-  do{
-  var genderInput;
-  var genderM=promptFor("Please Enter Gender"),male;
-  var genderF=promptFor("Please Enter Gender"),female;
-  }
-  while (genderM.toLowerCase==false ||(genderF.toLowerCase==false)){   
-        alerts("Error! You must select Male or Female");
-          return false;
-        }
-      }
+//validation of gender -M
+function gender(people,personGender){
+  var personGender=promptFor("Please enter male or female."),chars;
 
-
-//for validation of height-M
+  if(personGender.toLowerCase() !="male" && personGender.toLowerCase() !="female"){
+  return false;
+}
+  alert("The person's gender is: ") +personGender;
+  return true;
+}  
+//validation of height-M
 function height(input, personHeight){
   do{
   var heightInput;
   var personHeight=promptFor("Please Enter Person's Height.");
   }
-  while(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in),numericId){
-    callback("Error! Please enter height, must be numerical!");
+  while(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in),numerical){
+    alert("Error! Please enter height, must be numerical!");
     return false;
   }
 }
-
 //validation of weight-M
 function weight(input, personWeight) {
   do{
   var weightInput;
   var personWeight=promptFor("Please Enter Person's Weight.");
   }
-  while(weight =="" || isNan(weight),numericId){
-    callback ("Error! Please enter weight, must be numerical!");
+  while(weight =="" || isNan(weight),numerical){
+    alert("Error! Please enter weight, must be numerical!");
       return false;
   }
 }
-
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor,peopleEyeColor){
   do{
@@ -195,11 +196,10 @@ function eyeColor(input, personEyeColor,peopleEyeColor){
   }
   while(personEyeColor.toLowerCase == null ){
     var personEyeColor ="";
-    callback("Error! Enter A Valid Color!");
+    alert("Error! Enter A Valid Color!");
       return false;
     }
   }
-
 //validation of Occupation -M
 function occupation(input,personOccupation){
   do{
@@ -215,12 +215,10 @@ function occupation(input,personOccupation){
 }
   while (personOccupation.toLowerCase == null){
     var personOccupation="";
-    callback("Error! Enter Valid Occupation!");
+    alert("Error! Enter Valid Occupation!");
       return false;
     }
   }
-
-
 //validation of Spouse-M
 function spouse(input,personCSpouse,people){
   do{
@@ -230,7 +228,7 @@ function spouse(input,personCSpouse,people){
 }
     while (personCSpouse.toLowerCase == null){
     var personOccupation="";
-      callback ("Error! Enter vaild ID or Name!");
+      alert("Error! Enter vaild ID or Name!");
       return false;  
     }
   }
@@ -245,35 +243,45 @@ function searchByMul(people){
 
 }
 
-// search by individual trait
+// search by individual trait //that needs to be filtered through all traits//
 function searchByTraits(people){
-  let traitsOption = prompt("How Do you want to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Eye Color, Press '4' for Height, Press '5' for  Spouse Name");
+  let traitsOption = prompt("How Do you want to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Occupation, Press '4' for Height, Press '5' for  Weight, Press '6' for Eye Color");
+  let peopleFiltered = [];
   switch (traitsOption){
     case "1":
-      searchByAge();
+      peopleFiltered = searchByAge(people);
+      return peopleFiltered;
       //filter person by Age
     case "2" :
-      searchByGender();
+      peopleFiltered = searchByGender(people);
+      return peopleFiltered;
       //filter person by Gender
     case "3" :
-      searchByOccupation();
+      peopleFiltered = searchByOccupation(people);
+      return peopleFiltered;
       // filter person by Occupation
     case "4" :
-      searchByHeight();
+      peopleFiltered = searchByHeight(people);
+      return peopleFiltered;
       // filter person by Height
     case "5":
-      searchbyCurrentSpouse();
+      peopleFiltered = searchByWeight(people);
+      return peopleFiltered;
       // filter person by spouse name
-    
+    case "6":
+      peopleFiltered = searchByEyeColor(people);
+      return peopleFiltered;
+      // filter person by eye color
   }
-
 }
+
 function searchByAge(people){
   let ageInput = promptFor("Please Enter the Age.", isAgeValid);
   people = dobToAge(ageInput, people);
   displayPerson(people[1], people);
 
 }
+
 
 function dobToAge(ageInput, people){ // To be continued...
   var ageInput;
@@ -295,4 +303,76 @@ function dobToAge(ageInput, people){ // To be continued...
     }
   });
   return people;
+}
+
+
+function searchByOccupation(people){
+    var userInput = prompt("Enter occupation.");
+    let filteredPeople = people.filter(function(el){
+      if(el.occupation.toLowerCase === userInput.toLowerCase){
+        return true;
+      }
+    });
+  return filteredPeople;
+}
+
+function searchByHeight(input, people){
+  var heightInput = parseInt(prompt("Enter the person's height."));
+//   var personHeight = (height_ft=="" || height_in =="" || isNan(height_ft) || (isNaN(height_in),numerical){
+//   if (heightInput === userInput){
+//     return true;
+//   }
+// });
+  let filteredPeople = people.filter(function(el){
+      if(el.height === heightInput){
+        return true;
+      }
+    });
+  return filteredPeople;
+}
+
+function searchByWeight(input, people){
+  var weightInput = parseInt(prompt("Enter the person's weight."));
+  // var personWeight == "" || (isNan(weight),numerical{
+  // if(weightInput === userInput){
+  //   return true;
+  //   }
+  // });
+  let filteredPeople = people.filter(function(el){
+    if(el.weight === userInput){
+      return true;
+      }
+  });
+  return filteredPeople;
+}
+
+
+function searchByGender(people){
+  var userInput =  prompt("Enter male or female.");
+  let filteredPeople = people.filter(function(el){
+    if(el.gender.toLowerCase === userInput){
+      return true;
+      }
+  });
+  return filteredPeople; 
+}
+
+function searchByEyeColor(people){
+  var userInput = prompt("Enter Eye Color.");
+  let filteredPeople = people.filter(function(el){
+    if(el.eyeColor.toLowerCase === userInput){
+      return true;
+    }
+  });
+      return filteredPeople;
+}
+
+function isDoneSearching(){
+  var userInput = prompt("Are you done with your search?");
+  if  (userInput === "yes"){
+    return false;
+  }
+  else {
+    return true;
+  }
 }
