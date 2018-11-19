@@ -66,11 +66,7 @@ function searchByName(people){
     }
   });
   return filteredPeople[0];
-
-  return filteredGender[0];
-  
-  
-  }
+}
 
 // alerts a list of people
 function displayPeople(people){
@@ -103,8 +99,8 @@ function displayPerson(person, people){
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
   personInfo += "Date of Birth: " + person.dob + "\n";
-  personInfo += "Height: " + person.height + "\n";
-  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Height: " + person.height + " in." + "\n";
+  personInfo += "Weight: " + person.weight + " lb." + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
@@ -272,7 +268,8 @@ function searchByTraits(people){
 }
 function searchByAge(people){
   let ageInput = promptFor("Please Enter the Age.", isAgeValid);
-  dobToAge(ageInput, people);
+  people = dobToAge(ageInput, people);
+  displayPerson(people[1], people);
 
 }
 
@@ -282,16 +279,18 @@ function dobToAge(ageInput, people){ // To be continued...
   var todaysDate = new Date();
   var todaysYear = todaysDate.getFullYear();
   var todaysMonth = todaysDate.getMonth() + 1;
-  var todaysDay = todaysDate.getDay() + 1;
+  var todaysDay = todaysDate.getDate() + 1;
 
   semiFiltered = people.map(function(person){
-      let dobArray = person.dob.split("/");
-      var fMonth = todaysMonth - dobArray[0];
-      var fday = todaysDay - dobArray[1];
-      var fYear = todaysYear - dobArray[2];
-      //person.age =
+    var dobArray = person.dob.split("/");
 
+    for (var i = 0; i < people.length; i++){
+      var fAge = todaysYear - dobArray[2];
+        if (dobArray[0] > todaysMonth || dobArray[1] > todaysDay){
+          fAge = fAge + 1;
+        }
+      people[i].age = fAge;
+    }
   });
-
-  // return totalAge;
+  return people;
 }
