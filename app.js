@@ -238,12 +238,16 @@ function searchByTraits(people){
       searchByAge();
       //filter person by Age
     case "2" :
+      searchByGender();
       //filter person by Gender
     case "3" :
+      searchByOccupation();
       // filter person by Occupation
     case "4" :
+      searchByHeight();
       // filter person by Height
     case "5":
+      searchbyCurrentSpouse();
       // filter person by spouse name
     
   }
