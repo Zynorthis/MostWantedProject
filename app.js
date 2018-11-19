@@ -78,18 +78,18 @@ function displayPeople(people){
 function displayPerson(person, people){
 
   var id = person.currentSpouse;
-    if (id === null){
-      var cSpouseFN = "N/A";
-      var cSpouseLN = "";
+  var filteredSpouse = people.filter(function(el){
+    if(el.id === id){
+    return el;
     }
-    else{
-      var filteredSpouce = people.filter(function(el){
-        if(el.id === id){
-        return el;
-        }
-      });
-      cSpouseFN = filteredSpouce[0].firstName;
-      cSpouseLN = filteredSpouce[0].lastName;
+  });
+  if (cSpouseFN == null || cSpouseLN == null) {
+    var cSpouseFN = "N/A";
+    var cSpouseLN = "";
+  }
+  else{
+    cSpouseFN = filteredSpouse[0].firstName;
+    cSpouseLN = filteredSpouse[0].lastName;
     }
   if (person.parents.length == 0){
       person.parents = "N/A";
@@ -143,47 +143,81 @@ function age(input){
 }
 
 //for validation of gender -M
-function gender(input, personGender){
-  let genderM=promptFor("Please Enter Gender" );
-  let genderF=promptFor("Please Enter Gender");
-  if (genderM.checked==false && genderF.checked==false)
-      { 
-        alert("You must select Male or Female");
+function gender(input,people){
+  do{
+  var genderM=promptFor("Please Enter Gender"),male;
+  var genderF=promptFor("Please Enter Gender"),female;
+  while (genderM.toLowerCase==false ||callback(genderF.toLowerCase==false)){   
+        callback("Error! You must select Male or Female");
           return false;
+        }
       }
-}
+
+
 //for validation of height-M
 function height(input, personHeight){
-  let personHeight=promptFor("Please Enter Person's Height.",height);
-  if(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in)){
-  alert("Please enter height, must be numerical!");
+  do{
+  var personHeight=promptFor("Please Enter Person's Height.",height),numericId;
+  while(height_ft=="" || height_in =="" || isNan(height_ft) || isNaN(height_in),numericId);
+  callback("Error! Please enter height, must be numerical!");
         return false;
-  }
+      }
 }
+
 //validation of weight-M
 function weight(input, personWeight) {
-  let personWeight=promptFor("Please Enter Person's Weight.",weight);
-  if(weight =="" || isNan(weight)){
-    alert ("Please enter weight, must be numerical!");
+  do{
+  var personWeight=promptFor("Please Enter Person's Weight.",numericId;
+  while(weight =="" || isNan(weight),numericId){
+    callback ("Error! Please enter weight, must be numerical!");
       return false;
   }
 }
+
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor,peopleEyeColor){
-  let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
-  let colors= eyeColor["Black","Brown","Green","Blue","Hazel"];
+  do{
+  var peopleEyeColor;
+  var personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
+  var colors= peopleEyeColor.map(function("Black","Brown","Green","Blue","Hazel");
 
-  if (personEyeColor =="" () ){
-    alert("Please Enter A Valid Color!");
+  while(personEyeColor.toLowerCase == null ){
+    var personEyeColor ="";
+    callback("Error! Enter A Valid Color!");
       return false;
+    }
   }
 }
-//validation of Occupation
+
+//validation of Occupation -M
 function occupation(input,personOccupation){
+  do{
+  var personOccupation;
+  var personOccupation=promptFor("Please Enter Person's Occupation");
+  var occupation= personsOccupation.forEach(function("Nurse","Doctor","Assistant","Landscaper","Politician","Programmer","Student","Architect");
 
-
-
+  while (personOccupation.toLowerCase == null){
+    var personOccupation="";
+    callback("Error! Enter Valid Occupation!");
+      return false;
+    }
+  }
 }
+
+//validation of Spouse-M
+function spouse(input,personCSpouse,people){
+  do{
+  var personCSpouse=promptFor("Please Enter Your Spouses Name."),numericId;
+  var id=personCSpouse(function(el){
+    
+    while (personCSpouse.toLowerCase == null){
+    var personOccupation="";
+      callback ("Error! Enter vaild ID or Name!");
+      return false;  
+    }
+  }
+}
+
 
 //Needs to be completed -K
 // can be used in later stages 
@@ -191,9 +225,6 @@ function searchByMul(people){
     alert("Please Enter atleast 2 fields from the following")
     let personId = promptFor("Enter the ID", numericId);        
     let personAge = promptFor("Enter the Person's Age", age);
-    let personSpouse = prompt("Enter Spouse's Full Name: ", firstName, lastName)
-    let personEyeColor = promptFor("Please Choose Person's Eye Color");
-    let personOcc = prompt("Enter person's Occupation");
 
 }
 
@@ -205,15 +236,16 @@ function searchByTraits(people){
       searchByAge();
       //filter person by Age
     case "2" :
-      gender();
+      searchByGender();
       //filter person by Gender
     case "3" :
-      occupation();
+      searchByOccupation();
       // filter person by Occupation
     case "4" :
-      height();
+      searchByHeight();
       // filter person by Height
     case "5":
+      searchbyCurrentSpouse();
       // filter person by spouse name
     
   }
