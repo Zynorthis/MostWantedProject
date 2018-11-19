@@ -183,22 +183,33 @@ function weight(input, personWeight) {
 }
 //validation of eyecolor-M
 function eyeColor(input, personEyeColor,peopleEyeColor){
+  let peopleEyeColor;
   let personEyeColor=promptFor("Please Choose Person's Eye Color",eyeColor);
-  let colors= eyeColor["Black","Brown","Green","Blue","Hazel"];
+  let colors= peopleEyeColor.map(function("Black","Brown","Green","Blue","Hazel");{
 
   if (personEyeColor =="" () ){
-    alert("Please Enter A Valid Color!");
+    alert("Enter A Valid Color!");
       return false;
     }
   }
 }
-//validation of Occupation
+
+
+
+//validation of Occupation nurse,doctor,assistant etc
 function occupation(input,personOccupation){
+  let personOccupation;
+  let personOccupation=promptFor("Please Enter Person's Occupation")
 
 
 
 }
 
+//validation of Spouse
+function spouse(input,personSpouse){
+
+
+}
 //Needs to be completed -K
 
 function searchByMul(people){
