@@ -13,7 +13,8 @@ function app(people){
     case 'yes':
       // TODO: search by name
       let nameSearch = searchByName(people);
-      displayPerson(nameSearch, people);
+      nameSearch = displayPerson(nameSearch, people);
+      mainMenu(nameSearch, people);
       break;
     case 'no':
 //while loop
@@ -32,7 +33,7 @@ function app(people){
   }
 }
 
-// Menu function to call once you find who you are looking for ,call app before if statement from html 
+// Menu function to call once you find who you are looking for, call app before if statement from html 
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -45,12 +46,18 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
+      displayPerson(person, people);
+      mainMenu(person, people);
       // TODO: get person's info
       break;
     case "family":
+      displayFamily(person, people);
+      mainMenu(person, people);
       // TODO: get person's family
       break;
     case "descendants":
+      displayDescend(person, people);
+      mainMenu(person, people);
       // TODO: get person's descendants
       break;
     case "restart":
@@ -72,6 +79,10 @@ function searchByName(people){
       return el;
     }
   });
+  if (el === null){
+    alert ("No person was found.");
+    searchByName(people);
+  }
   return filteredPeople[0];
 }
 
@@ -84,25 +95,12 @@ function displayPeople(people){
 
 function displayPerson(person, people){
 
-  var id = person.currentSpouse;
-  var filteredSpouse = people.filter(function(el){
-    if(el.id === id){
-    return el;
-    }
-  });
-  if (cSpouseFN == null || cSpouseLN == null) {
-    var cSpouseFN = "N/A";
-    var cSpouseLN = "";
-  }
-  else{
-    cSpouseFN = filteredSpouse[0].firstName;
-    cSpouseLN = filteredSpouse[0].lastName;
-    }
-  if (person.parents.length == 0){
-      person.parents = "N/A";
-  }
+  var peoplePackage = spouseFilter(person, people);
+  var cSpouseFN = peoplePackage[0];
+  var cSpouseLN = peoplePackage[1];
+  person.parents = peoplePackage[2];
 
-  personInfo = "First Name: " + person.firstName + "\n";
+  var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
   personInfo += "Date of Birth: " + person.dob + "\n";
@@ -114,6 +112,7 @@ function displayPerson(person, people){
   personInfo += "Current Spouse: " + cSpouseFN + " " + cSpouseLN + "\n";
   console.log("ID: " + person.id + "\n" + personInfo);
   alert(personInfo);
+  return personInfo;
 }
 
 // function that prompts and validates user input
@@ -283,12 +282,9 @@ var
 function searchByAge(people){
   let ageInput = promptFor("Please Enter the Age.", isAgeValid);
   people = dobToAge(ageInput, people);
-  displayPerson(people[1], people);
-
 }
 
-
-function dobToAge(ageInput, people){ // To be continued...
+function dobToAge(ageInput, people){
   var ageInput;
   var semiFiltered = [];
   var todaysDate = new Date();
@@ -310,6 +306,71 @@ function dobToAge(ageInput, people){ // To be continued...
   return people;
 }
 
+function disaplayFamily(person, people){
+
+  var peoplePackage = spouseFilter(person, people);
+  var cSpouseFN = peoplePackage[0];
+  var cSpouseLN = peoplePackage[1];
+  var filteredSiblings = [];
+  if (person.parents.length != 0){
+    filteredSiblings = people.filter(function(el){
+      if(el.id === person.parents){
+      return el;
+      }
+    });
+  }
+  else{
+    person.parents = "N/A";
+  }
+
+  var personFamily = "Current Spouse: " + cSpouseFN + cSpouseLN + "\n";
+  personFamily += "Parents: " + person.parents + "\n";
+  for (var n = 0; n < filteredSiblings.length; n++){
+    personFamily += "Sibling: " + filteredSiblings[n].firstName + " " + filteredSiblings[n].lastName + "\n";
+}
+  personFamily += "Children: " + "\n";
+  console.log("id: " + person.id + personFamily);
+  alert(personFamily);
+  return personFamily;
+}
+
+function displayDecend(person, people){
+
+}
+
+function getChildren(person, people){
+  var descendants = [];
+  children = people.filter(function(el){
+    // find children
+  });
+
+  for(var i = 0; i < descendants.length; i++){
+    return descendants.concat(getChildren(descendants[i], people));
+  }
+  return descendants;
+}
+
+function spouseFilter(person, people){
+  var peoplePackage = [];
+  var id = person.currentSpouse;
+  var filteredSpouse = people.filter(function(el){
+    if(el.id === id){
+    return el;
+    }
+  });
+  if (cSpouseFN == null || cSpouseLN == null) {
+    var cSpouseFN = "N/A";
+    var cSpouseLN = "";
+  }
+  else{
+    cSpouseFN = filteredSpouse[0].firstName;
+    cSpouseLN = filteredSpouse[0].lastName;
+  }
+  if (person.parents.length == 0){
+      person.parents = "N/A";
+  }
+  peoplePackage.push(cSpouseFN, cSpouseLN, persons.parents);
+  return peoplePackage;
 
 function searchByOccupation(people){
     var userInput = prompt("Enter occupation.");
