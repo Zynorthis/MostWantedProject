@@ -221,7 +221,7 @@ function searchByMul(people){
 }
 
 function searchByTraits(people){
-  let traitsOption = prompt("How Do you want to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Occupation, Press '4' for Height, Press '5' for  Weight, Press '6' for Eye Color");
+  let traitsOption = prompt("What would you like to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Occupation, Press '4' for Height, Press '5' for  Weight, Press '6' for Eye Color");
   let peopleFiltered = [];
   switch (traitsOption){
     case "1":
@@ -245,6 +245,11 @@ function searchByTraits(people){
   }
 }
 
+function displayTraitSearchResults(peoplefiltered){
+var traitSearchResults 
+var
+
+}
 function searchByAge(people){
   let ageInput = promptFor("Please Enter the Age.", isAgeValid);
   people = dobToAge(ageInput, people);
