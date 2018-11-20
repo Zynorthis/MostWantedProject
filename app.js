@@ -1,42 +1,27 @@
-/*
-Build all of your functions for displaying and gathering information below (GUI).
-*/
-
-// Group discussion topic: Having the ages be added the "people" array at the start of the script
-// then referrenced later in the other functions when age is needed to be looked up.
-
-// app is the function called to start the entire application link to search button 
-
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-      // TODO: search by name
       let nameSearch = searchByName(people);
       nameSearch = displayPerson(nameSearch, people);
       mainMenu(nameSearch, people);
       break;
     case 'no':
-//while loop
       let isSearching = true;
       while(isSearching){
         people = searchByTraits(people);
         isSearching = isDoneSearching();
       }
-      
-//traitSearchComplete
       break;
     default:
       alert("Invalid input. Please try again!");
-      app(people); // restart app
+      app(people);
     break;
   }
 }
 
-// Menu function to call once you find who you are looking for, call app before if statement from html 
 function mainMenu(person, people){
 
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
   if(!person){
     alert("Could not find that individual.");
     return app(people); // restart
@@ -48,25 +33,22 @@ function mainMenu(person, people){
     case "info":
       displayPerson(person, people);
       mainMenu(person, people);
-      // TODO: get person's info
       break;
     case "family":
       displayFamily(person, people);
       mainMenu(person, people);
-      // TODO: get person's family
       break;
     case "descendants":
       displayDescend(person, people);
       mainMenu(person, people);
-      // TODO: get person's descendants
       break;
     case "restart":
-      app(people); // restart
+      app(people);
       break;
     case "quit":
-      return; // stop execution
+      return;
     default:
-      return mainMenu(person, people); // ask again
+      return mainMenu(person, people);
   }
 }
 
@@ -123,16 +105,14 @@ function promptFor(question, callback){
   return response;
 }
 
-// helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
   return input.toLowerCase() == "yes" || input.toLowerCase() == "no";
 }
 
-// helper function to pass in as default promptFor validation
 function chars(input){
-  return true; // default validation only
+  return true;
 }
-//for validation of Age 
+
 function isAgeValid(input){
    if(isNaN(input)||input.length>3||input>120){
     alert("Please Enter a Valid Age");
@@ -142,13 +122,12 @@ function isAgeValid(input){
   }
 }
 
-//Date of Birth Validation in Format xx/xx/xxxx
-function age(input){
-  let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+// function age(input){
+//  let dateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
   
-}
+//}
 
-//validation of gender -M
+//validation of gender
 function gender(people,personGender){
   var personGender=promptFor("Please enter male or female."),chars;
 
@@ -190,7 +169,6 @@ function eyeColor(input, personEyeColor,peopleEyeColor){
     {
       return el;
     }
-  //"Black","Brown","Green","Blue","Hazel"
   });
   }
   while(personEyeColor.toLowerCase == null ){
@@ -242,7 +220,6 @@ function searchByMul(people){
 
 }
 
-// search by individual trait //that needs to be filtered through all traits//
 function searchByTraits(people){
   let traitsOption = prompt("How Do you want to search by? Press '1' for Age, Press '2' for Gender, Press '3' for Occupation, Press '4' for Height, Press '5' for  Weight, Press '6' for Eye Color");
   let peopleFiltered = [];
@@ -250,27 +227,21 @@ function searchByTraits(people){
     case "1":
       peopleFiltered = searchByAge(people);
       return peopleFiltered;
-      //filter person by Age
     case "2" :
       peopleFiltered = searchByGender(people);
       return peopleFiltered;
-      //filter person by Gender
     case "3" :
       peopleFiltered = searchByOccupation(people);
       return peopleFiltered;
-      // filter person by Occupation
     case "4" :
       peopleFiltered = searchByHeight(people);
       return peopleFiltered;
-      // filter person by Height
     case "5":
       peopleFiltered = searchByWeight(people);
       return peopleFiltered;
-      // filter person by spouse name
     case "6":
       peopleFiltered = searchByEyeColor(people);
       return peopleFiltered;
-      // filter person by eye color
   }
 }
 
@@ -322,7 +293,7 @@ function disaplayFamily(person, people){
   personFamily += "Parents: " + person.parents + "\n";
   for (var n = 0; n < filteredSiblings.length; n++){
     personFamily += "Sibling: " + filteredSiblings[n].firstName + " " + filteredSiblings[n].lastName + "\n";
-}
+  }
   personFamily += "Children: " + "\n";
   console.log("id: " + person.id + personFamily);
   alert(personFamily);
@@ -336,7 +307,6 @@ function displayDecend(person, people){
 function getChildren(person, people){
   var descendants = [];
   children = people.filter(function(el){
-    // find children
   });
 
   for(var i = 0; i < descendants.length; i++){
